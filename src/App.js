@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
+import Header from './components/Header';
 
 function App() {
-  return (
+    useEffect(() =>{
+     const location = axios.get('http://api.weatherapi.com/v1/current.json?key=b9279c17a4d649bda08153522211812&q=London&aqi=no')
+     .then(data => {
+       console.log(data);
+     })
+     .catch(error => console.log(error))
+    },[]);
+    return (
+      
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Header />
     </div>
   );
 }
